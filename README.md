@@ -14,3 +14,17 @@
 3. Универсальность
 4. Детерминированность
 5. Результативность
+
+Рассмотрим пример кодового блока с использованием анономных типов, LINQ и ref-параметров:
+```
+			int maxCount = 0;
+			list.Select(arr =>
+			{
+				int count = 0;
+				QuickSort(arr, ref count);
+				if (count > maxCount) maxCount = count;
+				return new { Arr = arr, Count = count };
+			})
+				.Where(item => item.Count == maxCount)
+				.Select(item => item.Arr);
+```
